@@ -10,9 +10,9 @@ It's written inside manual pages. `man 2 open` for example. Check whole list via
 
 - Make the program able to either operate on command-line arguments or use `STDIN` or `STDOUT` based on the number of command-line arguments specified by `ARGC`.
 
-`./uptoupper.s`
+`./args_or_std.s`
 
 
 - Modify the program so that it checks the result of each system call, and prints out an error message to `STDOUT` when it occurs.
 
-`./prodtoupper.s`
+`./errcheck.s`
