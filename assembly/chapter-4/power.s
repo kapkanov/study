@@ -9,10 +9,19 @@
 .section .text
 .globl _start
 _start:
-  pushl $3    # power
+  pushl $0    # power
   pushl $2    # base
   call  power
-  movl  %eax, %ebx
+  addl  $8,   %esp
+  pushl %eax
+
+  pushl $2
+  pushl $5
+  call  power
+  addl  $8,   %esp
+  popl  %ebx
+  addl  %eax, %ebx
+
   movl  $1,   %eax
   int   $0x80  # exit
 
@@ -22,17 +31,20 @@ _start:
 .type power,@function
 power:
   pushl %ebp
-  movl  %esp,    %ebp
-  movl  4(%ebp), %eax
-  movl  8(%ebp), %ebx
-  movl  %eax,    %ecx
-  power_loop:
-    cmpl  $1,    %ebx
-    je    power_exit
-    imull %ecx,  %eax
-    subl  $1,    %ebx
-    jmp   power_loop
-    
+  movl  %esp,      %ebp
+  movl  8(%ebp),   %eax
+  movl  12(%ebp),  %ebx
+  movl  %eax,      %ecx
+  cmpl  $0,        %ebx
+  je    power_zero
+power_loop:
+  cmpl  $1,        %ebx
+  je    power_exit
+  imull %ecx,      %eax
+  subl  $1,        %ebx
+  jmp   power_loop
+power_zero:
+  movl  $1,        %eax
 power_exit:
-  popl %ebp
+  popl  %ebp
   ret
