@@ -1,0 +1,6 @@
+.set RECOFFSET_FIRSTNAME,   0
+.set RECOFFSET_LASTNAME,   40
+.set RECOFFSET_ADDRESS,    80
+.set RECOFFSET_AGE,       320
+
+.set RECLEN,              324
