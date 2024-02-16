@@ -1,26 +1,26 @@
 - Modify the first program to return the value 3
 
-`./1.s`
+`./return3.s`
 
 
 - Modify the `maximum` program to find the minimum instead
 
-`./2.s`
+`./min.s`
 
 
 -  Modify the `maximum` program to use the number 255 to end the list rather than the number 0
 
-`./3.s`
+`./end_255.s`
 
 
 - Modify the `maximum` program to use an ending address rather than the number 0 to know then to stop.
 
-`./4.s`
+`./end_address.s`
 
 
 - Modify the `maximum` program to use a length count rather than the number 0 to know when to stop
 
-`./5.s`
+`./end_len.s`
 
 - What would the instruction `movl _start, %eax` do? Be specific, based on your knowledge of both addressing modes and the meaning of `_start`. How would this differ from the instruction `movl $_start, %eax`?
 

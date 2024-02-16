@@ -142,7 +142,7 @@ toupper:
   movl  %esp,           %ebp
   movl  PARAM_1(%ebp),  %ebx
   movl  PARAM_2(%ebp),  %eax
-  movl  $-1,             %edi
+  movl  $-1,            %edi
 
 toupper_loop:
   incl  %edi

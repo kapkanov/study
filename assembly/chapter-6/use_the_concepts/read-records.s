@@ -15,7 +15,8 @@
 
 .section .data
 fname:
-  .ascii "test.dat\0"
+  .ascii "30test.dat\0"
+  # .ascii "test.dat\0"
 
 .section .bss
 .lcomm buf, RECLEN

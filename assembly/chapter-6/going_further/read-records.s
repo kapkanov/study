@@ -28,11 +28,16 @@ _start:
   movl %esp,          %ebp
   subl $8,            %esp
 
+# 8(%ebp) - arg 1
+# 4(%ebp) - program filename
+#  (%ebp) - argc
+  cmpl $2,            (%ebp)
+  jne _start_exit
+
   # Open the file
   movl $NR_OPEN,      %eax
-  movl $fname,        %ebx
-  # movl $FMODE_RDONLY, %ecx
-  movl $0,            %ecx
+  movl 8(%ebp),       %ebx
+  movl $FMODE_RDONLY, %ecx
   movl $FPERM,        %edx
   int  $INT_SYS
   movl %eax,          LVAR_1(%ebp)
@@ -45,7 +50,6 @@ _start_loop:
   addl  $8,           %esp
 
   # If we are at the end of the file, exit
-#  cmpl  $0,           %eax
   cmpl  $RECLEN,      %eax
   jne   _start_exit
 
