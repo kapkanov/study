@@ -1,5 +1,5 @@
-.include "linux.s"
 .include "stack.s"
+.include "linux.s"
 .include "recdef.s"
 .include "recwrite.s"
 
@@ -11,13 +11,16 @@ fname:
 
 rec1:
   .ascii "Frederick\0"
-  .skip RECLEN_FIRSTNAME - 10
+  .skip  RECLEN_FIRSTNAME - 10
 
   .ascii "Bartlett\0"
-  .skip RECLEN_LASTNAME - 9
+  .skip  RECLEN_LASTNAME - 9
+
+  .ascii "The Legend of Zelda\0"
+  .skip  RECLEN_FAVGAME - 20
 
   .ascii "4242 S Prairie \nTulsa, OK 55555\0"
-  .skip RECLEN_ADDRESS - 32
+  .skip  RECLEN_ADDRESS - 32
 
   .long  45
 
@@ -27,6 +30,9 @@ rec2:
   .skip  RECLEN_FIRSTNAME - 8
 
   .ascii "Taylor\0"
+  .skip  RECLEN_LASTNAME - 7
+
+  .ascii "Gothic\0"
   .skip  RECLEN_LASTNAME - 7
 
   .ascii "2224 S Johannan St\nChicago, IL 12345\0"
@@ -41,6 +47,9 @@ rec3:
 
   .ascii "McIntire\0"
   .skip  RECLEN_LASTNAME - 9
+
+  .ascii "Half-Life\0"
+  .skip  RECLEN_LASTNAME - 10
 
   .ascii "500 W Oakland\nSan Diego, CA 54321\0"
   .skip  RECLEN_ADDRESS - 34

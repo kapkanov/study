@@ -6,9 +6,6 @@
 
 .section .data
 
-fname:
-  .ascii "test.dat\0"
-
 rec1:
   .ascii "Frederick\0"
   .skip RECLEN_FIRSTNAME - 10
@@ -50,16 +47,21 @@ rec3:
 .section .text
 
 # LVAR_1 - file descriptor
+.set FMODE, FMODE_WRONLY | FMODE_TRUNC | FMODE_CREAT
 .globl _start
 _start:
-  pushl %ebp
   movl  %esp,         %ebp
   subl  $4,           %esp
 
+  # 8(%ebp) - arg 1
+  # 4(%ebp) - program filename
+  #  (%ebp) - argc
+  cmpl  $2,            (%ebp)
+  jne   _start_exit
+
 # Open file
-.set FMODE, FMODE_WRONLY | FMODE_TRUNC | FMODE_CREAT
   movl $NR_OPEN,      %eax
-  movl $fname,        %ebx
+  movl 8(%ebp),       %ebx
   movl $FMODE,        %ecx
   movl $FPERM,        %edx
   int  $INT_SYS
@@ -88,7 +90,7 @@ _start:
   movl  LVAR_1(%ebp), %ebx
   int   $INT_SYS
 
-# Exit
+_start_exit:
   movl  %ebp,         %esp
   popl  %ebp
   movl  $NR_EXIT,     %eax
