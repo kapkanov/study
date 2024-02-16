@@ -1,9 +1,9 @@
-- Modify the first program to leave off the int instruction line. Assemble, link, and execute the new program. What error mesage do you get? Why do you think this might be?
+### Modify the first program to leave off the int instruction line. Assemble, link, and execute the new program. What error mesage do you get? Why do you think this might be?
 
 Because program doesn't terminate, program counter increases to the memory beyond the program.
 
 
-- So far, we have discussed three approaches to finding the end of the list - using a special number, using the ending address, and using the length count. Which approach do you think is best? Why? Which approach would you use if you knew that the list was sorted? Why?
+### So far, we have discussed three approaches to finding the end of the list - using a special number, using the ending address, and using the length count. Which approach do you think is best? Why? Which approach would you use if you knew that the list was sorted? Why?
 
 It depends. 
 
