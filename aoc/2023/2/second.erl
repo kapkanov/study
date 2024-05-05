@@ -17,7 +17,6 @@ c2i(V) ->
 
 s2i(Str) ->
   s2i(Str, 0).
-
 s2i([], Res) ->
   Res;
 s2i([Cur | Str], V) ->
@@ -26,7 +25,6 @@ s2i([Cur | Str], V) ->
 
 untilc(Str, C) ->
   untilc(Str, C, []).
-
 untilc([], _, Res) ->
   {reverse(Res), []};
 untilc([Head | Rest], C, Res) when Head == C ->
@@ -36,7 +34,6 @@ untilc([Head | Rest], C, Res) ->
 
 reverse(List) ->
   reverse(List, []).
-
 reverse([], Res) ->
   Res;
 reverse([Head | Rest], Res) ->
