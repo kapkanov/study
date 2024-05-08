@@ -54,8 +54,10 @@ until([Head | Rest], C, Res) when Head == C ->
 until([Head | Rest], C, Res) ->
   until(Rest, C, [Head | Res]).
 
-reverse(List) ->
-  reverse(List, []).
+reverse(List) when is_list(List) ->
+  reverse(List, []);
+reverse(C) ->
+  C.
 reverse([], Res) ->
   Res;
 reverse([Head | Rest], Res) ->
