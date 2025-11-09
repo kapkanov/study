@@ -1,0 +1,54 @@
+name: trade
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "$${POSTGRES_USER}", "-d", "$${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  liquibase:
+    image: liquibase/liquibase:4.27
+    restart: "no"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+    volumes:
+      - ./db/changelog:/liquibase/changelog:ro
+    working_dir: /liquibase/changelog
+    command: >
+      --url=jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      --username=${POSTGRES_USER}
+      --password=${POSTGRES_PASSWORD}
+      --changeLogFile=changelog.sql
+      update
+
+  binahistory:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: binahistory:latest
+    restart: unless-stopped
+    depends_on:
+      liquibase:
+        condition: service_completed_successfully
+    env_file:
+      - .env
+    command: "/usr/local/bin/binahistory"
+
+volumes:
+  postgres_data:
+    driver: local
+
