@@ -23,3 +23,4 @@ Ensure local toolchains cover `gcc` (C11), Erlang/OTP, NASM, and GNU binutils. S
 ## Learning Notes
 Capture short refreshers alongside the code—use nearby `readme.md` files (e.g. `assembly/gas/chapter-5/readme.md`) or create concise `.md` companions for new patterns. When revisiting a topic, append key takeaways and links so future you regains context fast.
 
+
