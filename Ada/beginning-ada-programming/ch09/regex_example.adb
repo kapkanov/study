@@ -7,7 +7,7 @@ procedure Regex_Example is
   Regex_Pattern   : constant String := "([0-9]+)";
   Sample_Words    : String := "There are 12 cats in the 1 " &
     "large house on the hill!  They are all eating from " &
-    "12 bowls 4 meals a day!";
+    "12 bowls 4 meals a day!0";
   Found           : Boolean := True;
   String_First    : Positive := Sample_Words'First;
   String_Iterator : Positive := Sample_Words'First;

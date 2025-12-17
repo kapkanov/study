@@ -74,6 +74,17 @@ begin
     end loop;
   end loop;
 
+  for Y in Screen_Height / 2 - 50 .. Screen_Height / 2 + 50 loop
+    for X in Screen_Width / 2 - 50 .. Screen_Width / 2 + 50 loop
+      Pixel_Array(Y * Screen_Width + X) := (
+        R => 0,
+        G => 255,
+        B => 0,
+        A => 255
+      );
+    end loop;
+  end loop;
+
   Ada.Streams.Stream_IO.Create(File, Ada.Streams.Stream_IO.Out_File, "out.pam");
   Stream := Ada.Streams.Stream_IO.Stream(File);
 
