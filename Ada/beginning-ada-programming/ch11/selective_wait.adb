@@ -12,8 +12,7 @@ procedure Selective_Wait is
   task body Comm_Task is
     Internal_Value : Integer := 0;
   begin
-    Main_Task_Loop :
-    loop
+    Main_Task_Loop : loop
       select
         accept Input(Value : in Integer) do
           Internal_Value := Value * 2;
@@ -38,5 +37,6 @@ begin
   Task_1.Input(Test_Value);
   Task_1.Retrieve(Test_Value);
   Ada.Text_IO.Put_Line("The new test value: " & Integer'Image(Test_Value));
+  delay 600.0;
   Task_1.End_Task;
 end Selective_Wait;
